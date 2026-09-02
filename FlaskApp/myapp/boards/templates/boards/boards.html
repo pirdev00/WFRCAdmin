@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Boards{% endblock %}
+{% block headerContent %}<h1>Boards</h1>  <a class="nav-button" href="{{ url_for('boards.create') }}">New Board</a>  <a class="nav-button" href="{{ url_for('boards.create') }}">Test 2</a>{% endblock %}
+{% block content %}
+<ul>
+{% for board in boards %}
+  <div id="listItem">
+    <li><a href="{{ url_for('boards.board_detail', board_id=board.id) }}">{{ board.name }}</a></li>
+  </div>
+{% endfor %}
+</ul>
+{% endblock %}
+
+{% block footerContent %}<p>2026 ECRC Admin Tool. All rights reserved.</p>{% endblock %}

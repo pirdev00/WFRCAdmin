@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}{{ board.name }} Details{% endblock %}
+{% block headerContent %}<h1>{{ board.name }}</h1>{% endblock %}
+{% block content %}
+<ul>
+{% for assignment in board.role_assignments %}
+  <div id="listItem">
+    <li>{{assignment.person.first_name}} {{assignment.person.last_name}} - {{assignment.role_type.name}}</li>
+  </div>
+{% endfor %}
+</ul>
+{% endblock %}
+
+{% block footerContent %}<p>2026 ECRC Admin Tool. All rights reserved.</p>{% endblock %}

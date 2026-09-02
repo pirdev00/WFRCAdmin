@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Create New Board{% endblock %}
+{% block headerContent %}<h1>Create New Board</h1>{% endblock %}
+{% block content %}
+<form method="POST" action="{{ url_for('boards.create') }}">
+    <label for="name">Board Name:</label>
+    <input type="text" id="name" name="name" required>
+    <button type="submit">Create Board</button>
+</form>
+{% endblock %}
+
+{% block footerContent %}<p>2026 ECRC Admin Tool. All rights reserved.</p>{% endblock %}
