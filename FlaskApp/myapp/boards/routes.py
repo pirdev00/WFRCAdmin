@@ -19,6 +19,15 @@ def create():
         board = Board(name=name)
         db.session.add(board)
         db.session.commit()
-        return redirect(url_for('boards.board_detail'))
+        return redirect(url_for('boards.boards'))
         pass
     return render_template('boards/create.html')   
+
+@boards_bp.route('/boards/<int:board_id>/edit', methods=['GET', 'POST'])
+def edit(board_id):
+    board = Board.query.get_or_404(board_id)
+    if request.method == 'POST':
+        board.name = request.form.get('name')
+        db.session.commit()
+        return redirect(url_for('boards.board_detail', board_id=board.id))
+    return render_template('boards/edit.html', board=board)

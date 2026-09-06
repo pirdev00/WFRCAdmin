@@ -1,15 +1,29 @@
 {% extends "base.html" %}
 
 {% block title %}{{ board.name }} Details{% endblock %}
-{% block headerContent %}<h1>{{ board.name }}</h1>{% endblock %}
+{% block headerContent %}
+  <table><tr><td style="width: 50%"><h1 display="inline-block">{{ board.name }}</h1></td>
+             <td style="text-align: right;"><button type="button" href="{{ url_for('boards.edit_board', board_id=board.id) }}">Edit</button>  <button type="button" href="{{ url_for('boards.delete', board_id=board.id) }}">Delete</button></td>
+        </tr>
+  </table>
+{% endblock %}
 {% block content %}
 <ul>
 {% for assignment in board.role_assignments %}
   <div id="listItem">
-    <li>{{assignment.person.first_name}} {{assignment.person.last_name}} - {{assignment.role_type.name}}</li>
+    <li>
+      <table style="width:100%">
+        <tr>
+          <td style="width:35%">{{assignment.person.first_name}} {{assignment.person.last_name}}</td>
+          <td style="width:25%">{{assignment.role_type.name}}</td>
+          <td style="text-align:right;"><button type="button" href="{{ url_for('people.edit', person_id=assignment.person.id) }}">Edit</button> <button type="button" href="{{ url_for('people.delete', person_id=assignment.person.id) }}">Delete</button></td>
+        </tr>
+      </table>
+    </li>
   </div>
 {% endfor %}
 </ul>
+
 {% endblock %}
 
 {% block footerContent %}<p>2026 ECRC Admin Tool. All rights reserved.</p>{% endblock %}
