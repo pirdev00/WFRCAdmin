@@ -2,9 +2,12 @@
 
 {% block title %}{{ board.name }} Details{% endblock %}
 {% block headerContent %}
-  <table><tr><td style="width: 50%"><h1 display="inline-block">{{ board.name }}</h1></td>
-             <td style="text-align: right;"><button type="button" href="{{ url_for('boards.edit', board_id=board.id) }}">Edit</button>  <button type="button" href="{{ url_for('boards.delete', board_id=board.id) }}">Delete</button></td>
-        </tr>
+ 
+  <table style="width: 100%">
+    <tr>
+      <td style="width: 50%"><h1 display="inline-block">{{ board.name }}</h1></td>
+      <td style="text-align: right;"><a class="line-button" href="{{ url_for('boards.edit', board_id=board.id) }}">Edit</a> <a class="line-button delete-link" href="{{ url_for('boards.delete', board_id=board.id) }}" method="POST">Delete</a></td>
+    </tr>
   </table>
 {% endblock %}
 {% block content %}
@@ -14,14 +17,17 @@
     <li>
       <table style="width:100%">
         <tr>
-          <td style="width:35%">{{assignment.person.first_name}} {{assignment.person.last_name}}</td>
-          <td style="width:25%">{{assignment.role_type.name}}</td>
-          <td style="text-align:right;"><button type="button">Edit</button> <button type="button">Delete</button></td>
+          <td class="listText2" style="width:35%">{{assignment.person.first_name}} {{assignment.person.last_name}}</td>
+          <td class="listText2" style="width:25%">{{assignment.role_type.name}}</td>
+          <td class="listText2" style="text-align:right;"><a class="line-button" href="{{ url_for('people.edit', person_id=assignment.person.id) }}">Edit</a> <a class="line-button delete-link" href="{{ url_for('people.delete', person_id=assignment.person.id) }}">Delete</a></td>
         </tr>
       </table>
     </li>
+   
   </div>
 {% endfor %}
+<br>
+<li><a class="line-button" href="{{ url_for('assignments.create', board_id=board.id) }}">Add Member</a></li>
 </ul>
 
 {% endblock %}

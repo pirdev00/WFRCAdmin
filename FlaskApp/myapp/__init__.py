@@ -21,5 +21,9 @@ def create_app(config_class=Config):
     app.register_blueprint(boards_bp)
     from myapp.home.routes import home_bp
     app.register_blueprint(home_bp)
+    from myapp.people.routes import people_bp
+    app.register_blueprint(people_bp)
+    from myapp.assignments.routes import assignments_bp
+    app.register_blueprint(assignments_bp)
 
     return app

@@ -1,5 +1,6 @@
 from flask import Blueprint, redirect, render_template, request, url_for
 from myapp.models import Board, db, timezone
+from datetime import datetime
 
 boards_bp = Blueprint('boards', __name__, template_folder='templates', url_prefix='/boards')
 @boards_bp.route('/boards')
@@ -38,5 +39,8 @@ def delete(board_id):
     if request.method == 'POST':
         board.removed_on = datetime.now(timezone.utc)
         db.session.commit()
+        for assignment in board.role_assignments:
+            assignment.end_date = datetime.now(timezone.utc)
+            db.session.commit()
         return redirect(url_for('boards.boards'))
     return render_template('boards/delete.html', board=board)
