@@ -27,7 +27,11 @@ def create():
         return redirect(url_for('people.people'))
     return render_template('people/create.html')
 
-@people_bp.route('/people/<int:person_id>/edit', methods=['GET', 'POST'])
+@people_bp.route('/people/edit', methods=['GET', 'POST'])
 def edit(person_id):
-    return render_template('people/delete.html', person_id=person_id)
+    return render_template('people/edit.html', person_id=person_id)
+
+@people_bp.route('/people/delete', methods=['GET', 'POST'])
+def delete(person_id):
+    return render_template('people/delete.html', person_id=person_id)   
 

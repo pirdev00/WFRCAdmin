@@ -3,7 +3,7 @@
 {% block title %}{{ board.name }} Details{% endblock %}
 {% block headerContent %}
   <table><tr><td style="width: 50%"><h1 display="inline-block">{{ board.name }}</h1></td>
-             <td style="text-align: right;"><button type="button" href="{{ url_for('boards.edit_board', board_id=board.id) }}">Edit</button>  <button type="button" href="{{ url_for('boards.delete', board_id=board.id) }}">Delete</button></td>
+             <td style="text-align: right;"><button type="button" href="{{ url_for('boards.edit', board_id=board.id) }}">Edit</button>  <button type="button" href="{{ url_for('boards.delete', board_id=board.id) }}">Delete</button></td>
         </tr>
   </table>
 {% endblock %}
@@ -16,7 +16,7 @@
         <tr>
           <td style="width:35%">{{assignment.person.first_name}} {{assignment.person.last_name}}</td>
           <td style="width:25%">{{assignment.role_type.name}}</td>
-          <td style="text-align:right;"><button type="button" href="{{ url_for('people.edit', person_id=assignment.person.id) }}">Edit</button> <button type="button" href="{{ url_for('people.delete', person_id=assignment.person.id) }}">Delete</button></td>
+          <td style="text-align:right;"><button type="button">Edit</button> <button type="button">Delete</button></td>
         </tr>
       </table>
     </li>
