@@ -11,7 +11,9 @@ def boards():
 @boards_bp.route('/boards/<int:board_id>')
 def board_detail(board_id):
     board = Board.query.get_or_404(board_id)
-    return render_template('boards/boardDetail.html', board=board)
+    assignments = [a for a in board.role_assignments if a.end_date is None]
+    
+    return render_template('boards/boardDetail.html', board=board, assignments=assignments)
 
 @boards_bp.route('/boards/create', methods=['GET', 'POST'])
 def create():

@@ -1,8 +1,17 @@
 # myapp/__init__.py
 
 from flask import Flask
+from sqlalchemy import event
+from sqlalchemy.engine import Engine
 from config import Config
 from myapp.extensions import db, login_manager, migrate
+
+
+@event.listens_for(Engine, "connect")
+def set_sqlite_pragma(dbapi_connection, connection_record):
+    cursor = dbapi_connection.cursor()
+    cursor.execute("PRAGMA foreign_keys=ON")
+    cursor.close()
 
 def create_app(config_class=Config):
     app = Flask(__name__)

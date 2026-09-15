@@ -37,7 +37,7 @@ class RoleType(db.Model):
 
 class RoleAssignment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    person_id = db.Column(db.Integer, db.ForeignKey('person.id'), nullable=True)
+    person_id = db.Column(db.Integer, db.ForeignKey('person.id', ondelete='CASCADE'), nullable=False)
     board_id = db.Column(db.Integer, db.ForeignKey('board.id'), nullable=False)
     role_type_id = db.Column(db.Integer, db.ForeignKey('role_type.id'), nullable=False)
     start_date = db.Column(db.DateTime(timezone=True), nullable=False, default=lambda: datetime.now(timezone.utc))

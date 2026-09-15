@@ -1,11 +1,26 @@
 {% extends "base.html" %}
 
-{% block title %}Create Assignment{% endblock %}
+{% block title %}Add Member{% endblock %}
 {% block headerContent %}\
-<h1>Create Assignment Page(WIP)</h1>
+<h1>Add Member To {{ board.name }}</h1>
 {% endblock %}
 {% block content %}
+<form method="POST" action="{{ url_for('assignments.create', board_id=board.id) }}">
+    <label class="form_label" for="cars">Select a person to add:</label>
 
+<select id="person_id" name="person_id">
+    {% for person in people %}
+        <option value="{{ person.id }}">{{ person.first_name }} {{ person.last_name }}</option>
+    {% endfor %}
+</select><br><br>
+    <label class="form_label" for="role">Select a role:</label>
+<select id="role" name="role">
+    {% for role in types %}
+        <option value="{{ role.id }}">{{ role.name }}</option>
+    {% endfor %}
+</select><br><br>
+    <button type="submit">Add Member</button>
+</form>
 {% endblock %}
 
 {% block footerContent %}<p>2026 ECRC Admin Tool. All rights reserved.</p>{% endblock %}

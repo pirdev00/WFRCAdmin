@@ -5,7 +5,7 @@
 <h1>Edit {{person.first_name}} {{person.last_name}}</h1>
 {% endblock %}
 {% block content %}
-<form method="POST" action="{{ url_for('people.edit', person_id=person.id, board_id=board.id) }}">
+<form method="POST" action="{{ url_for('people.edit_card', person_id=person.id) }}">
     <label class="form_label" for="firstName">First Name:</label>
     <input type="text" id="firstName" name="firstName" value="{{ person.first_name }}" required><br><br>
 
@@ -21,8 +21,13 @@
     <label class="form_label" for="phone">Phone:</label>
     <input type="text" id="phone" name="phone" value="{{ person.phone }}"><br><br>
 
-    <label class="form_label" for="currentBoard">Current Board:</label>
-    <input type="text" id="currentBoard" name="currentBoard" value="{{ board.name }}" readonly><br><br>
+    <fieldset>
+        <legend>Current Board Assignments:</legend>
+        {% for board in boards %}
+            <input type="checkbox" id="board_{{ board.id }}" name="boards" value="{{ board.id }}" {% if board.id in assignmentBoardIds %}checked{% endif %}>
+            <label for="board_{{ board.id }}">{{ board.name }}</label><br>
+        {% endfor %}
+    </fieldset>
 
     <button type="submit">Update Person</button>
 </form>

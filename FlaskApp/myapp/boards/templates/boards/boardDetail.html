@@ -12,14 +12,14 @@
 {% endblock %}
 {% block content %}
 <ul>
-{% for assignment in board.role_assignments %}
+{% for assignment in assignments %}
   <div id="listItem">
     <li>
       <table style="width:100%">
         <tr>
-          <td class="listText2" style="width:35%">{{assignment.person.first_name}} {{assignment.person.last_name}}</td>
+          <td class="listText2" style="width:35%">{% if assignment.person.honorific_title %}{{ assignment.person.honorific_title }} {% endif %}{{ assignment.person.first_name }} {{ assignment.person.last_name }}</td>
           <td class="listText2" style="width:25%">{{assignment.role_type.name}}</td>
-          <td class="listText2" style="text-align:right;"><a class="line-button" href="{{ url_for('people.edit', person_id=assignment.person.id) }}">Edit</a> <a class="line-button delete-link" href="{{ url_for('people.delete', person_id=assignment.person.id) }}">Delete</a></td>
+          <td class="listText2" style="text-align:right;"><a class="line-button" href="{{ url_for('people.edit_card', person_id=assignment.person.id)}}">Edit</a> <a class="line-button delete-link" href="{{ url_for('assignments.delete', assignment_id=assignment.id)}}" method="POST">Delete</a></td>
         </tr>
       </table>
     </li>
