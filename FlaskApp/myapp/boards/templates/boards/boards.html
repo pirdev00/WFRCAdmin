@@ -1,12 +1,19 @@
 {% extends "base.html" %}
 
 {% block title %}Boards{% endblock %}
-{% block headerContent %}<h1>Boards</h1>  <a class="nav-button" href="{{ url_for('boards.create') }}">New Board</a>  <a class="nav-button" href="{{ url_for('boards.create') }}">Test 2</a>{% endblock %}
+{% block headerContent %}
+<table style="width: 100%">
+  <tr>
+    <td style="width: 50%"><h1 display="inline-block">Boards</h1></td>
+    <td style="text-align: right;"><a class="line-button listText" href="{{ url_for('boards.create') }}">Create Board</a></td>
+  </tr>
+</table>
+{% endblock %}
 {% block content %}
 <ul>
 {% for board in boards %}
   <div id="listItem">
-    <li><a href="{{ url_for('boards.board_detail', board_id=board.id) }}">{{ board.name }}</a></li>
+    <li><a class="listText" href="{{ url_for('boards.board_detail', board_id=board.id) }}">{{ board.name }}</a></li>
   </div>
 {% endfor %}
 </ul>

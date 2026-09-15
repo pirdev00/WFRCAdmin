@@ -77,3 +77,56 @@ li {
     display: inline-block;
     font-size:large;
 }
+
+.line-button{
+    display: inline-block;
+    padding: 12px 24px;
+    color:black;
+    text-decoration: none;
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+    text-align: center;
+    background-color: rgba(235, 232, 232, 0.5);
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.line-button:hover {
+    background-color: rgba(100, 121, 243, 0.8);
+}
+
+.listText{
+    font-family: "Fjalla One", sans-serif;
+    font-weight: 300;
+}
+
+.listText2{
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+    font-size: medium;
+}
+
+.form_label{
+    font-family: "Fjalla One", sans-serif;
+    font-weight: 400;
+    font-size: medium;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.line-button2{
+    display: inline-block;
+    padding: 12px 24px;
+    color:black;
+    text-decoration: none;
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+    text-align: center;
+    background-color: rgba(235, 232, 232, 0.5);
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}

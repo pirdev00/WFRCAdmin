@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Add Person{% endblock %}
+{% block headerContent %}
+<h1>Add Person (WIP)</h1>
+{% endblock %}
+{% block content %}
+<form method="POST" action="{{ url_for('people.create')}}">
+    <label class="form_label" for="firstName">Member First Name:</label>
+    <input type="text" id="firstName" name="first_name" required><br><br>
+
+    <label class="form_label" for="lastName">Member Last Name:</label>
+    <input type="text" id="lastName" name="last_name" required><br><br>
+
+    <label class="form_label" for="honorific">Member Honorific:</label>
+    <input type="text" id="honorific" name="honorific_title"><br><br>
+
+    <label class="form_label" for="email">Member Email:</label>
+    <input type="email" id="email" name="email" required><br><br>
+
+    <label class="form_label" for="phone">Member Phone:</label>
+    <input type="text" id="phone" name="phone"><br><br>
+
+    <fieldset>
+        <legend>Add to Boards: </legend>
+        {% for board in allboards %}
+            <input type="checkbox" id="board_{{ board.id }}" name="boards" value="{{ board.id }}" {% if board.id in assignmentBoardIds %}checked{% endif %}>
+            <label for="board_{{ board.id }}">{{ board.name }}</label><br>
+        {% endfor %}
+    </fieldset>
+    
+    <button type="submit">Add Person</button>
+</form>
+{% endblock %}
+
+{% block footerContent %}<p>2026 ECRC Admin Tool. All rights reserved.</p>{% endblock %}

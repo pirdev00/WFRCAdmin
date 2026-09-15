@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Person{% endblock %}
+{% block headerContent %}\
+<h1>Edit {{person.first_name}} {{person.last_name}}</h1>
+{% endblock %}
+{% block content %}
+<form method="POST" action="{{ url_for('people.edit', person_id=person.id, board_id=board.id) }}">
+    <label class="form_label" for="firstName">First Name:</label>
+    <input type="text" id="firstName" name="firstName" value="{{ person.first_name }}" required><br><br>
+
+    <label class="form_label" for="lastName">Last Name:</label>
+    <input type="text" id="lastName" name="lastName" value="{{ person.last_name }}" required><br><br>
+
+    <label class="form_label" for="honorific">Honorific:</label>
+    <input type="text" id="honorific" name="honorific" value="{{ person.honorific_title }}"><br><br>
+
+    <label class="form_label" for="email">Email:</label>
+    <input type="email" id="email" name="email" value="{{ person.email }}" required><br><br>
+
+    <label class="form_label" for="phone">Phone:</label>
+    <input type="text" id="phone" name="phone" value="{{ person.phone }}"><br><br>
+
+    <label class="form_label" for="currentBoard">Current Board:</label>
+    <input type="text" id="currentBoard" name="currentBoard" value="{{ board.name }}" readonly><br><br>
+
+    <button type="submit">Update Person</button>
+</form>
+{% endblock %}
+
+{% block footerContent %}<p>2026 ECRC Admin Tool. All rights reserved.</p>{% endblock %}

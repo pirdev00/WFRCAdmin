@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}People{% endblock %}
+{% block headerContent %}
+<table style="width: 100%">
+  <tr>
+    <td style="width: 50%"><h1 display="inline-block">People</h1></td>
+    <td style="text-align: right;"><a class="line-button listText" href="{{ url_for('people.create') }}">Add Person</a></td>
+  </tr>
+</table>
+{% endblock %}
+{% block content %}
+{% for person in people %}
+ <div id="listItem">
+    <li>
+        <table style="width:100%">
+            <tr>
+                <td class="listText2" style="width:25%">{% if person.honorific_title %}{{ person.honorific_title }} {% endif %}{{ person.first_name }} {{ person.last_name }}</td>
+                <td class="listText2" style="width:25%">{{person.email}}</td>
+                <td class="listText2" style="width:30%">{{person.phone}}</td>
+                <td class="listText2" style="text-align:right;"><a class="line-button2" href="{{ url_for('people.edit_card', person_id=person.id) }}">Edit</a></td>
+                <td class="listText2" style="text-align:right;"><a class="line-button2 delete-link" href="{{ url_for('people.delete_card', person_id=person.id) }}">Delete</a></td>
+            </tr>
+        </table>
+    </li>
+  </div>
+{% endfor %}
+{% endblock %}
+
+
+{% block footerContent %}<p>2026 ECRC Admin Tool. All rights reserved.</p>{% endblock %}
