@@ -1,4 +1,5 @@
-from flask import Blueprint, redirect, render_template, request, url_for
+from flask import Blueprint, redirect, render_template, request, send_file, url_for
+from FlaskApp.myapp.documents.generators import generate_roster_docx
 from myapp.models import Board, db, timezone
 from datetime import datetime
 
@@ -46,3 +47,15 @@ def delete(board_id):
             db.session.commit()
         return redirect(url_for('boards.boards'))
     return render_template('boards/delete.html', board=board)
+
+
+@boards_bp.route('/<int:board_id>/roster.docx')
+def download_roster(board_id):
+    board = Board.query.get_or_404(board_id)
+    buf = generate_roster_docx(board)
+    return send_file(
+        buf,
+        as_attachment=True,
+        download_name=f'{board.name}_roster.docx',
+        mimetype='application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+    )
