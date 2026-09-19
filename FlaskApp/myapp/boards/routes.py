@@ -1,5 +1,5 @@
 from flask import Blueprint, redirect, render_template, request, send_file, url_for
-from FlaskApp.myapp.documents.generators import generate_roster_docx
+from myapp.documents.generators import generate_roster_docx
 from myapp.models import Board, db, timezone
 from datetime import datetime
 
